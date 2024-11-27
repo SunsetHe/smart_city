@@ -46,7 +46,7 @@ def read_coordinates(file_path):
 
 
 # 使用示例
-file_path = 'file_grid_locate.txt'
+file_path = 'file_grid_locate_1.txt'
 coords_dict = read_coordinates(file_path)
 
 delta_k = 26  # 设置 δ.k 的值
