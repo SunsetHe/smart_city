@@ -58,3 +58,9 @@ result = process_coordinates(coords_dict, delta_k)
 for value in result:
     print(value)
 
+outputfile = "result.txt"
+
+
+with open(outputfile, mode='w', encoding='utf-8') as f:
+    for point in result:
+        f.write(str(point) + "\n")  # 每个文件名写入一行
