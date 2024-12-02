@@ -47,20 +47,35 @@ def read_coordinates(file_path):
 
 # 使用示例
 file_path = 'file_grid_locate_1.txt'
-coords_dict = read_coordinates(file_path)
-
 delta_k = 26  # 设置 δ.k 的值
-
-# 处理数据
-result = process_coordinates(coords_dict, delta_k)
-
-# 打印结果
-for value in result:
-    print(value)
-
-outputfile = "result.txt"
+coords_dict = read_coordinates(file_path)
+results = process_coordinates(coords_dict,delta_k)
 
 
-with open(outputfile, mode='w', encoding='utf-8') as f:
-    for point in result:
-        f.write(str(point) + "\n")  # 每个文件名写入一行
+# for result in results:
+#     print(result)
+
+sorted_result = sorted(results, key=len, reverse=True)
+
+# for result in sorted_result:
+#     print(result)
+
+# outputfile = "sorted_result.txt"
+# with open(outputfile, mode='w', encoding='utf-8') as f:
+#     for point in sorted_result:
+#         f.write(str(point) + "\n")
+
+avg_result = []
+
+for i in range(len(results)):
+    result = results[i]
+    sum_lon = sum([point[0] for point in result])
+    sum_lat = sum([point[1] for point in result])
+    avg_lon = sum_lon / len(result)
+    avg_lat = sum_lat / len(result)
+    avg_result.append([avg_lon,avg_lat])
+    print(avg_result[i])
+outputfilename = "result_avg.txt"
+with open(outputfilename, mode='w', encoding='utf-8') as f:
+    for point in avg_result:
+        f.write(str(point) + "\n")
