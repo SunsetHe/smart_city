@@ -103,6 +103,7 @@ def load_data():# data:key->taxi_id,value->[[time],[coordinates(not mercator)],[
 
 def get_pickup_point(traj_data: dict) -> list:
     """
+    获取轨迹数据中的上下车点
 
     Args:
         traj_data: 轨迹数据,data:key->taxi_id,value->[[timestamp],[coordinates(not mercator)],[status]]
@@ -128,7 +129,23 @@ def get_pickup_point(traj_data: dict) -> list:
     return pickup_point_list
 
 
+def save_to_csv(pickup_point_list, file_name):
+    """
+    将上下车点的列表保存到 CSV 文件
 
+    Args:
+        pickup_point_list: 上下车点的列表，格式为 [[count_ID, up/down, timestamp, lon, lat]]
+        file_name: 保存的 CSV 文件名
+    """
+    headers = ['count_ID', 'up/down', 'timestamp', 'lon', 'lat']
+    with open(file_name, mode='w', encoding='utf-8', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(headers)
+        writer.writerows(pickup_point_list)
 
+    print(f"数据已保存到 {file_name}")
+
+filename = "pickup_points.csv"
 traj_data,district = load_data()
 pickup_points = get_pickup_point(traj_data)
+save_to_csv(pickup_points,filename)

@@ -2,8 +2,4 @@ traj的数据在 [taxi_data | Kaggle](https://www.kaggle.com/datasets/hesunset/t
 ----------------------------------
 # TODO
 
-代码规范化 ×
-
-不同超参数的尝试 ×
-
-利用现有地图平台对聚类结果进行标注或者人工标注 ×
+将代码优化为一个便于更改的代码 √
